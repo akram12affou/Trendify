@@ -3,8 +3,9 @@
 @tailwind utilities;
 
 .primary_color{
-    color:#15b7b9;
+    color:#1baaad;
 }
 .primary_color_bg{
-    background: #15b7b9;
+    background: #1baaad;
 }
+
