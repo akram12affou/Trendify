@@ -1,13 +1,24 @@
 import userModel from "../models/userModel.js"
 import { responce } from "../utils/errorResponceHandler.js";
 import asyncHandler from "express-async-handler";
+import bcrypt from 'bcrypt'
+import { generateToken } from "../utils/generateToken.js";
+
+ 
 export const register = asyncHandler(async (req,res) => {
-    const {username, email} = req.body
-    const user = await userModel.findOne({ $or: [{ username }, { email }] })
-    if(user){
+    const {username,email,password} = req.body
+    const user = await userModel.findOne({ $or: [{ username }, { email }] });
+    if(user){ 
         responce(res,'user already exist' ,400);
     }else{
-        const newUser = await userModel.create(req.body);
+         const hashedPassword = await bcrypt.hash(password, 10);
+        const newUser = await userModel.create(
+            {
+                username,
+                email,
+                password:hashedPassword
+            }
+        );
         newUser.save();
         res.json('user created');
     }
@@ -15,16 +26,18 @@ export const register = asyncHandler(async (req,res) => {
 
 
 export const login = asyncHandler(async (req,res) => {
-    const {password, email} = req.body
-    const user = await userModel.findOne({email});
-    if(user){
-        const matchedPassword = await user.matchPassword(password)
-        if(matchedPassword){
-            
-        }
-        res.json(matchedPassword)
+    const {password,email} = req.body;
+    const user = await userModel.findOne({ email });
+    if(user){ 
+        const matchedPassword = await bcrypt.compare(password,user.password);
+        if (matchedPassword) {
+            generateToken(res,user._id)
+            res.json("user logged in")
+          } else {
+            responce(res,'Wrong Credential',403);
+          }
     }else{ 
-       responce(res,"user don't exist " ,400);
+       responce(res,"user don't exist",404);
     }
 }) 
 

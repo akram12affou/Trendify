@@ -1,4 +1,4 @@
-export const responce = (res,err , status) => {
+export const responce = (res, message , status) => {
     res.status(status);
     throw Error(message);
 }

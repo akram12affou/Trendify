@@ -1,8 +1,8 @@
-
+import HomeCarousel from './components/HomeCarousel'
 export default function Home() {
   return (
     <main>
-     hy
+     <HomeCarousel/>
     </main>
   )
 }
