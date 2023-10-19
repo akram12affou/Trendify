@@ -22,7 +22,11 @@ const Nav = () => {
         </div>
         <div className="hidden sm:flex items-center">
           <FaHome className="mx-4  primary_color text-xl sm:text-2xl duration-200 ease-in-out hover:scale-110 cursor-pointer" />
-          <FaShoppingCart className="mx-4  primary_color text-xl sm:text-2xl duration-200 ease-in-out hover:scale-110  cursor-pointer" />
+          <div className="relative">
+            <FaShoppingCart className="mx-4 primary_color text-xl sm:text-2xl duration-200 ease-in-out hover:scale-110  cursor-pointer" />
+            <span className="absolute bottom-2 left-12 bg-red-600 rounded text-white  px-1 text-sm">0</span>
+          </div>
+          
           <button className="mx-4 text-white primary_color_bg px-4 py-1  rounded">
             Log in
           </button>
@@ -32,11 +36,14 @@ const Nav = () => {
         </div>
       </div>
 
-      <div ref={menu} className=" sm:hidden flex translate-x-full  duration-200 ease-in-out flex-col items-end  z-50 h-full bg-green-100 absolute top-0 w-2/5 right-0 ">
+      <div ref={menu} className=" sm:hidden flex translate-x-full  duration-200 ease-in-out flex-col items-end  z-50 h-full bg-green-50 absolute top-0 w-2/5 right-0 ">
         <AiOutlineClose className="text-2xl mt-4 mr-4 cursor-pointer duration-200 ease-in-out hover:scale-110 " onClick={() => setOpen(prev => !prev)}/>
         <div className="flex absolute left-0 top-16 flex-col gap-5  ">
           <FaHome className="mx-4 primary_color text-xl sm:text-2xl cursor-pointer duration-200 ease-in-out hover:scale-110" />
+          <div className="relative">
           <FaShoppingCart className="mx-4 primary_color text-xl sm:text-2xl cursor-pointer duration-200 ease-in-out hover:scale-110" />
+           <span className="absolute bottom-2 left-11 bg-red-600 rounded text-white  px-1 text-sm">0</span>
+          </div>
           <button className="mx-4 text-white primary_color_bg px-4 py-1 rounded">
             Log in
           </button>

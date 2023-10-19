@@ -3,8 +3,7 @@ import type { Metadata } from 'next'
 import {Poppins} from 'next/font/google'
 import Nav from './components/Nav'
 import './globals.css'
-import 'bootstrap/dist/css/bootstrap.min.css';
-
+import 'bootstrap/dist/css/bootstrap.min.css'
 
 
 const poppins = Poppins({
