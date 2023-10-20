@@ -15,7 +15,10 @@ const config: Config = {
       },
       minHeight: {
                 '80': '80vh',
-              }
+              },
+        maxHeight: {
+                '100': '2rem',
+      }
     },
   },
   plugins: [],

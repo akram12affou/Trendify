@@ -31,7 +31,7 @@ function HomeCarousel() {
                       {product.description.length > 200 && <>...</>}{" "}
                     </p>
                     <p className="font-semibold">{product.price} £ Only </p>
-                    <button className="primary_color_bg text-white font-bold px-3.5 py-2.5 text_button tracking-wide ">
+                    <button className="primary_color_bg text-white font-bold px-3.5 py-2.5 text_button tracking-wide rounded-sm">
                       Buy Now
                     </button>
                   </div>
