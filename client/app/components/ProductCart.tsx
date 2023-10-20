@@ -1,14 +1,10 @@
-"use client";
-import { useState, useEffect } from "react";
-import axios from "axios";
-import Loading from "./Loading";
 import { FaStar } from "react-icons/fa";
 function Product({ product }: prouduct_Object) {
   console.log(product);
   const { title, description, price, image, rating } = product;
   return (
     
-      <div className="flex  relative flex-col gap-2 p-4 shadow_product w-3/4 sm:w-1/4 h-96 justify-center cursor-pointer hover:-translate-y-1 duration-200 ease-in-out overflow-hidden   after_product">
+      <div className="flex relative flex-col gap-3 p-4 shadow_product w-3/4 sm:w-1/4 h-96 justify-center cursor-pointer hover:-translate-y-1 duration-200 ease-in-out overflow-hidden   after_product">
         <img
           src={image}
           className="h-50 object-contain cursor-pointer hover:scale-[1.03] duration-200 ease-in-out"
@@ -28,7 +24,6 @@ function Product({ product }: prouduct_Object) {
           </span>
         </div>
       </div>
-    
   );
 }
 

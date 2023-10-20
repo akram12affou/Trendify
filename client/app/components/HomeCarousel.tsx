@@ -3,22 +3,15 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import Carousel from "react-bootstrap/Carousel";
 import Loading from "./Loading";
-function HomeCarousel() {
-  const [Treeproducts, setTreeProducts] = useState<prouduct_Object[]>([]);
-  useEffect(() => {
-    axios.get("https://fakestoreapi.com/products").then((res) => {
-      setTreeProducts(res.data.slice(0, 3));
-      console.log(res.data[0]);
-    });
-  }, []);
+function HomeCarousel({products} : prouduct_Object[]) {
   return (
     <>
       {" "}
-      {Treeproducts.length == 0 ? (
+      {products.length == 0 ? (
         <Loading />
       ) : (
         <Carousel variant="dark" className="sm:max-w-[91%] mx-auto min-h-80">
-          {Treeproducts.map((product, i) => {
+          {products.slice(0,3).map((product, i) => {
             return (
               <Carousel.Item key={i} interval={2000}>
                 <div className="flex justify-center sm:gap-[6rem] gap-[1rem]  items-center m-auto p-8">
