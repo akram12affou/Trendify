@@ -13,5 +13,15 @@ body{
 .primary_color_bg{
     background: #1baaad;
 }
+.img_width{
+  width: calc(65px + 25vw);
+}
 
+.brand_selection::selection {
+  color: rgb(255, 255, 255);
+  background: #1baaad;
+}
+.text_button{
+  font-size: calc(.9rem + .5vw);
+}
 

@@ -13,8 +13,20 @@ const config: Config = {
         'gradient-conic':
           'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
       },
+      height: {
+                '80': '80vh',
+              }
     },
   },
   plugins: [],
 }
 export default config
+// module.exports = {
+//   theme: {
+//     extend: {
+//       height: {
+//         '128': '32rem',
+//       }
+//     }
+//   }
+// }

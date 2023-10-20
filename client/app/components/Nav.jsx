@@ -17,7 +17,7 @@ const Nav = () => {
   return (
     <div>
       <div className="flex justify-between p-4 items-center sm:w-10/12 w-11/12 mx-auto ">
-        <div className="font-semibold uppercase leading-3  text-xl sm:text-2xl">
+        <div className="brand_selection font-semibold uppercase leading-3  text-xl sm:text-2xl">
           Trendify
         </div>
         <div className="hidden sm:flex items-center">
@@ -27,7 +27,7 @@ const Nav = () => {
             <span className="absolute bottom-2 left-12 bg-red-600 rounded text-white  px-1 text-sm">0</span>
           </div>
           
-          <button className="mx-4 text-white primary_color_bg px-4 py-1  rounded">
+          <button className="mx-4 text-white primary_color_bg px-4 py-1  rounded hover:tracking-wider duration-200 ease-in-out">
             Log in
           </button>
         </div>
@@ -44,7 +44,7 @@ const Nav = () => {
           <FaShoppingCart className="mx-4 primary_color text-xl sm:text-2xl cursor-pointer duration-200 ease-in-out hover:scale-110" />
            <span className="absolute bottom-2 left-11 bg-red-600 rounded text-white  px-1 text-sm">0</span>
           </div>
-          <button className="mx-4 text-white primary_color_bg px-4 py-1 rounded">
+          <button className="mx-4 text-white primary_color_bg px-4 py-1 rounded hover:tracking-wider duration-200 ease-in-out">
             Log in
           </button>
         </div> 
