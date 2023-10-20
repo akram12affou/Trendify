@@ -5,8 +5,8 @@ import { AiOutlineClose } from "react-icons/ai";
 import { FaShoppingCart } from "react-icons/fa";
 import { FaBars } from "react-icons/fa";
 const Nav = () => {
-  const [open , setOpen] = useState(false);
-  const menu = useRef();
+  const [open , setOpen] = useState<boolean>(false);
+  const menu  = useRef();
   useEffect(() => {
      if(open){
       menu.current.className = menu.current.className.replace('translate-x-full','translate-0')
@@ -26,7 +26,6 @@ const Nav = () => {
             <FaShoppingCart className="mx-4 primary_color text-xl sm:text-2xl duration-200 ease-in-out hover:scale-110  cursor-pointer" />
             <span className="absolute bottom-2 left-12 bg-red-600 rounded text-white  px-1 text-sm">0</span>
           </div>
-          
           <button className="mx-4 text-white primary_color_bg px-4 py-1  rounded hover:tracking-wider duration-200 ease-in-out">
             Log in
           </button>
