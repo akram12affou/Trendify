@@ -1,7 +1,6 @@
 'use client'
-import {useState,useEffect} from 'react'
 import Product from './ProductCart';
-import axios from 'axios'
+
 function Products({products} : prouduct_Object[]) {
   return (
     <div className='p-3 sm:w-10/12 w-11/12 mx-auto'>
@@ -14,7 +13,7 @@ function Products({products} : prouduct_Object[]) {
             <Product key={product.id}  product={product}/>
           )
          })}
-
+       
        </div>
     </div>
   )

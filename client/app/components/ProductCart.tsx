@@ -1,6 +1,6 @@
 import { FaStar } from "react-icons/fa";
+
 function Product({ product }: prouduct_Object) {
-  console.log(product);
   const { title, description, price, image, rating } = product;
   return (
     
@@ -20,7 +20,7 @@ function Product({ product }: prouduct_Object) {
         <div className="relative ">
           <span className="font-semibold p-2">{price} £</span>
           <span className="absolute top-4 left-10 opacity-90 line-through text-sm italic">
-            {price + 50} £
+            {price.toFixed(1) + 50}£
           </span>
         </div>
       </div>
