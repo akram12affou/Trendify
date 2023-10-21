@@ -6,7 +6,7 @@ function Offers({products} : prouduct_Object[]) {
       <h2 className='font-semibold  mb-8 sm:text-2xl text-xl uppercase secondary_color racking-wide brand_selection after_underline'>
         exclusive offer :
      </h2>
-    <div className='flex flex-wrap gap-5 justify-center'>
+    <div className='flex flex-wrap gap-3 justify-center h-90'>
       {products.slice(6,8).map(product => {
        return( 
           <ProductCart2 key={product.id} product={product} />
