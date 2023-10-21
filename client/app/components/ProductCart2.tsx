@@ -1,10 +1,13 @@
 import React from 'react'
+import { useRouter } from 'next/navigation'
 
 function ProductCart2({product} : prouduct_Object) {
-  const { title, description, price, image } = product ;
+  const { id ,title, description, price, image } = product ;
+  const router = useRouter()
+
 
   return (
-    <div className='flex  h-1/2 after_product shadow_product p-4 cursor-pointer hover:-translate-y-1 duration-200 ease-in-out w-11/12 items-center'>
+    <div className='flex  h-1/2 after_product shadow_product p-4 cursor-pointer hover:-translate-y-1 duration-200 ease-in-out w-11/12 items-center'  onClick={() => router.push(`/productdetails/${id}`)}>
       <div className='flex flex-col gap-3 w-3/4 items-start'>
         <h3 className='text-lg font-semibold '>{title}</h3>
         <div className='relative'>
@@ -18,7 +21,8 @@ function ProductCart2({product} : prouduct_Object) {
 
 
        <div className='w-1/4'>
-          <img className='w-48 object-contain cursor-pointer hover:scale-[1.03] duration-200 ease-in-out' src={image} alt="" />
+          <img className='w-48 object-contain cursor-pointer hover:scale-[1.03] duration-200 ease-in-out'           
+                src={image} alt="" />
        </div>
     </div>
   )
