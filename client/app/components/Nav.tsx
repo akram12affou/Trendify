@@ -18,7 +18,7 @@ const Nav = () => {
   },[open])
   return (
     <div>
-      <div className="flex justify-between p-4 items-center sm:w-10/12 w-11/12 mx-auto ">
+      <div className="flex justify-between p-4 items-center sm:w-10/12 w-11/12 mx-auto">
         <div className="brand_selection font-semibold uppercase leading-3  text-xl sm:text-2xl cursor-pointer" onClick={() => router.push('/')}>
           Trendify
         </div>

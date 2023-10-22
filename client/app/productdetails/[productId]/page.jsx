@@ -28,7 +28,7 @@ function page() {
      : 
       <div className='flex gap-12 p-4 sm:w-10/12 w-11/12 mx-auto mt-8 shadow_product items-center'>
        <div className='w-1/3'>
-        <img src={image} alt="" />
+        <img src={image} className='w-80' />
        </div>
        <div className='flex flex-col gap-3 items-start w-2/3'>
         <h2 className='font-semibold  secondary_color text-xl sm:text-2xl tracking-wider'>{title}</h2>
