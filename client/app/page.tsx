@@ -5,15 +5,15 @@ import Offers from './components/Offers'
 import axios from 'axios'
 import { useEffect , useState } from 'react'
 import AllProducts from './components/AllProducts'
+import {useContext} from 'react'
+import { ProductsContext } from './Context/productContext'
 export default function Home() {
-  const [products,setProducts] = useState<prouduct_Object[]>([])
-  useEffect(() => {
-    axios.get("https://fakestoreapi.com/products").then(res => {
-      setProducts(res.data)
-    })
-  },[])
+  const { products} = useContext(ProductsContext)
+  console.log(products)
+
   return (
     <main>
+      
      <HomeCarousel products={products}/>
      <Products products={products}/>
      <Offers products={products}/>

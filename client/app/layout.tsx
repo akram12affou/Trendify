@@ -4,7 +4,7 @@ import {Poppins} from 'next/font/google'
 import Nav from './components/Nav'
 import './globals.css'
 import 'bootstrap/dist/css/bootstrap.min.css'
-
+import {ProductsContextProvider} from '@/app/Context/productContext'
 
 const poppins = Poppins({
   weight:['400','700'],
@@ -24,8 +24,13 @@ const  RootLayout = ({
   return (
     <html lang="en">
       <body className={poppins.className}>
-        <Nav/>
-        {children} 
+      <ProductsContextProvider>
+         <Nav/>
+        {children}
+
+      </ProductsContextProvider>
+      
+         
       </body>
     </html>
   )
