@@ -37,19 +37,20 @@ function page() {
     dispatch({ type: "REMOVE_FROM_CART", payload: product });
 
   }
+  const priceD = product.price?.toFixed(2)
   return (
     <>
       {loading ? (
         <Loading />
       ) : (
-        <div className="flex gap-12 p-4 sm:w-10/12 w-11/12 mx-auto mt-8 shadow_product items-center">
+        <div className="flex flex-col sm:flex-row sm:gap-5 gap-3 p-4 sm:w-10/12 w-11/12 mx-auto mt-8 shadow_product items-center">
      
-          <div className="w-1/3 ">
+          <div className="sm:w-5/12 w-3/4 flex justify-center">
             
-            <img src={image} className="w-80" />
+            <img src={image} className="w-1/2 sm:w-3/4" />
           </div>
-          <div className="flex flex-col gap-3 items-start w-2/3">
-            <h2 className="font-semibold  secondary_color text-xl sm:text-2xl tracking-wider">
+          <div className="flex flex-col gap-3 items-start sm:w-7/12 8/12">
+            <h2 className="font-semibold  secondary_color text-lg sm:text-xl sm:tracking-wider tracking-wide">
               {title}
             </h2>
             <span className="text-white primary_color_bg p-1 flex rounded-sm items-center gap-2 text-sm sm:text-base">
@@ -59,7 +60,7 @@ function page() {
             <div className="relative">
               <span className="font-semibold">{price}£</span>
               <span className="absolute text-sm top-3 line-through">
-                {price + 50}£
+                {priceD + 50}£
               </span>
             </div>
 
