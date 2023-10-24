@@ -16,6 +16,9 @@ body{
 .secondary_color_bg{
     background-color: #c60d65;
 }
+.secondary{
+ color: #c60d65;
+}
 .img_width{
   width: calc(65px + 25vw);
 }
@@ -41,6 +44,7 @@ body{
 
 .text_button{
   font-size: calc(.9rem + .5vw);
+  font-weight: 600;
 }
 .secondary_color{
   color: #3a316e;

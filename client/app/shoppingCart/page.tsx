@@ -10,6 +10,20 @@ function page() {
   const removeFromCart = (product) => {
     dispatch({ type: "REMOVE_FROM_CART", payload: product });
   }
+  const addQuantity = (product) => {
+    dispatch({ type: "ADD_QUANTITY", payload: product });
+  }
+  const minusQuantity = (product) => {
+    dispatch({ type: "MINUS_QUANTITY", payload: product });
+  }
+  const TotalAmount = () => {
+     let count = 0;
+     for(let i=0;shoppingCart.length > i;i++){
+      console.log(i)
+      count = count + shoppingCart[i].q * shoppingCart[i].price
+     }
+     return count
+  }
   return (
     <>
     {shoppingCart.length==0  &&
@@ -29,9 +43,9 @@ function page() {
                <div className="flex flex-col justify-center gap-2 w-1/2">
                 <img src={product.image} className="mx-auto w-1/2" />
                <div className="flex justify-center gap-2 items-center">
-                <FaMinusCircle className='cursor-pointer  sm:text-2xl text-xl'/>
+                <FaMinusCircle className='cursor-pointer  sm:text-2xl text-xl' onClick={() => minusQuantity(product)}/>
                 <input className="border border-black outline-none w-1/2 p-2" value={product.q}/>
-                <FaPlusCircle className='cursor-pointer sm:text-2xl text-xl'/>
+                <FaPlusCircle className='cursor-pointer sm:text-2xl text-xl' onClick={() => addQuantity(product)} />
                </div>
 
                 
@@ -42,7 +56,7 @@ function page() {
                   <span className="font-semibold" >{product.price}£</span>
                   <span className="absolute top-3.5 line-through text-sm ">{product.price.toFixed(2) + 50}£ </span>
                 </div>
-                 <button onClick={() => removeFromCart(product)} className='secondary_color_bg text-white font-bold px-2 py-1 text_button tracking-wide rounded-sm lg:text-xs text-sm '>Remove</button>
+                 <button onClick={() => removeFromCart(product)} className='secondary_color_bg text-white px-2 py-1 text_button tracking-wide rounded-sm  '>Remove</button>
 
 
               </div>
@@ -61,7 +75,7 @@ function page() {
           <span>Delivery charges</span>
         </div>
         <div className="flex flex-col gap-3">
-          <span>219.9</span>
+          <span>{TotalAmount()} £</span>
           <span className="font-semibold text-green-600">10</span>
           <span className="font-semibold text-green-600">Free</span>
         </div>
@@ -70,7 +84,7 @@ function page() {
         <div className="primary_color_bg h-1 rounded-lg w-1/4 lg:w-1/2 my-4 mx-auto  "/>
         <div className="  flex flex-col ">
           <span>Total amount
-          &nbsp;&nbsp; <span className="font-semibold">652.00£</span>
+          &nbsp;&nbsp; <span className="font-semibold">{TotalAmount() - 10} £</span>
           </span>
           <br />
           <span className="text-green-500 font-semibold">you will save 10£ on this order</span>
