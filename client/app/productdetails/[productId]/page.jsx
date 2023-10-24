@@ -43,8 +43,9 @@ function page() {
         <Loading />
       ) : (
         <div className="flex gap-12 p-4 sm:w-10/12 w-11/12 mx-auto mt-8 shadow_product items-center">
-          {/* {JSON.stringify(shoppingCart)} */}
-          <div className="w-1/3">
+     
+          <div className="w-1/3 ">
+            
             <img src={image} className="w-80" />
           </div>
           <div className="flex flex-col gap-3 items-start w-2/3">
@@ -90,9 +91,9 @@ function page() {
                 </button>
               )}
             </div>
+            <span className="text-red-500 tracking-wider font-serif font-semibold">Only {rating?.count} left in stock </span>
           </div>
-          {/* { existInShoppingCart() ?
-             <> Remove from Cart</> : <> Add to Cart</>} */}
+          
         </div>
       )}
     </>

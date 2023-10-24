@@ -6,7 +6,7 @@ function Product({ product }: prouduct_Object) {
   const {id, title, price, image, rating } = product;
   return (
     
-      <div className="flex relative flex-col gap-3 p-4 shadow_product w-3/4 sm:w-1/4 h-96 justify-center cursor-pointer hover:-translate-y-1 duration-200 ease-in-out overflow-hidden   after_product" onClick={() => router.push(`/productdetails/${id}`)}>
+      <div className="flex relative flex-col gap-3 p-4 shadow_product w-3/4 sm:w-1/4 h-96 justify-center cursor-pointer hover:-translate-y-1 duration-200 ease-in-out overflow-hidden   after_product border-1 border-sky-300 rounded-sm" onClick={() => router.push(`/productdetails/${id}`)}>
         <img
           src={image}
           className="h-50 object-contain cursor-pointer hover:scale-[1.03] duration-200 ease-in-out"

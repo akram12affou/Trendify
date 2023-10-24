@@ -2,32 +2,23 @@
 import React from "react";
 import {FaPlusCircle} from 'react-icons/fa'
 import {FaMinusCircle} from 'react-icons/fa'
+import { getShoppingCart } from "../hooks/getContextProducts";
 function page() {
-  const products = [{
-    category: "men's clothing",
-    description:
-      "Your perfect pack for everyday use and walks in the forest. Stash your laptop (up to 15 inches) in the padded sleeve, your everyday",
-    id: 1,
-    image: "https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg",
-    price: 109.95,
-    rating: { rate: 3.9, count: 120 },
-    title: "Fjallraven - Foldsack No. 1 Backpack, Fits 15 Laptops",
-  }]
- 
-
+  const shoppingCart = getShoppingCart()
+  
   return (
     <div className="flex flex-col lg:flex-row lg:w-10/12 w-11/12  mx-auto p-4 gap-4 items-start">
       <div className="w-full shadow_product p-3 lg:w-3/4">
         <h3 className="font-semibold  mb-8 lg:text-2xl text-xl uppercase secondary_color racking-wide brand_selection after_underline">my cart</h3>
         <div>
-          {products.map(product => {
+          {shoppingCart.map(product => {
             return(
               <div className="flex items-center">
                <div className="flex flex-col justify-center gap-2 w-1/2">
                 <img src={product.image} className="mx-auto w-1/2" />
                <div className="flex justify-center gap-2">
                 <FaMinusCircle className='cursor-pointer  sm:text-2xl text-xl'/>
-                <input className="border border-black outline-none w-1/2 "/>
+                <input className="border border-black outline-none w-1/2 " value={product.q}/>
                 <FaPlusCircle className='cursor-pointer sm:text-2xl text-xl'/>
                </div>
 

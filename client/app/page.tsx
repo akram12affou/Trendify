@@ -16,8 +16,6 @@ useEffect(() => {
          dispatch({type:"FETCH",payload:res.data})
   }) 
 },[])     
- console.log(products)
-  
       
   return ( 
     <main>     

@@ -1,13 +1,13 @@
 "use client";
-import React , {useEffect, useState , useRef , useContext} from "react";
+import React , {useEffect, useState , useRef } from "react";
 import { FaHome } from "react-icons/fa";
 import { useRouter } from "next/navigation";
 import { AiOutlineClose } from "react-icons/ai";
 import { FaShoppingCart } from "react-icons/fa";
 import { FaBars } from "react-icons/fa";
-import { ProductsContext } from "../Context/productContext";
+import { getShoppingCart } from "../hooks/getContextProducts";
 const Nav = () => {
-  const {shoppingCart} = useContext(ProductsContext)
+  const shoppingCart = getShoppingCart();
   const router  = useRouter();
   const [open , setOpen] = useState<boolean>(false);
   const menu  = useRef();
