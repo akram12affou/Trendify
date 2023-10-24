@@ -5,8 +5,8 @@ import { getProducts } from "../hooks/getContextProducts";
 function Products() {
  const products = getProducts()
   return (
-    <div className='p-3 sm:w-10/12 w-11/12 mx-auto'>
-       <h2 className='font-semibold  mb-8 sm:text-2xl text-xl uppercase secondary_color racking-wide brand_selection after_underline'>
+    <div className=' sm:w-10/12 w-11/12 mx-auto'>
+       <h2 className='p-3 font-semibold  mb-8 sm:text-2xl text-xl uppercase secondary_color racking-wide brand_selection after_underline'>
         Brand new Products :
         </h2>
        <div className='flex flex-wrap gap-5 justify-center'>

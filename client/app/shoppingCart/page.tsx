@@ -1,11 +1,15 @@
 'use client'
-import React from "react";
+import React, {useContext} from "react";
+import { ProductsContext } from "../Context/productContext";
 import {FaPlusCircle} from 'react-icons/fa'
 import {FaMinusCircle, FaCartPlus} from 'react-icons/fa'
 import { getShoppingCart } from "../hooks/getContextProducts";
 function page() {
   const shoppingCart = getShoppingCart()
-  
+  const { dispatch } = useContext(ProductsContext);
+  const removeFromCart = (product) => {
+    dispatch({ type: "REMOVE_FROM_CART", payload: product });
+  }
   return (
     <>
     {shoppingCart.length==0  &&
@@ -18,27 +22,27 @@ function page() {
       
       <div className="w-full shadow_product p-3 lg:w-3/4">
         <h3 className="font-semibold  mb-8 lg:text-2xl text-xl uppercase secondary_color racking-wide brand_selection after_underline">my cart</h3>
-        <div>
+        <div className="flex flex-col gap-4">
           {shoppingCart.map(product => {
             return(
               <div className="flex items-center">
                <div className="flex flex-col justify-center gap-2 w-1/2">
                 <img src={product.image} className="mx-auto w-1/2" />
-               <div className="flex justify-center gap-2">
+               <div className="flex justify-center gap-2 items-center">
                 <FaMinusCircle className='cursor-pointer  sm:text-2xl text-xl'/>
-                <input className="border border-black outline-none w-1/2 " value={product.q}/>
+                <input className="border border-black outline-none w-1/2 p-2" value={product.q}/>
                 <FaPlusCircle className='cursor-pointer sm:text-2xl text-xl'/>
                </div>
 
                 
                </div >
                <div className='w-1/2 flex flex-col gap-3 items-start'>
-                <h2 className="lg:text-xl text-base font-semibold lg:tracking-wider tracking-wide">{product.title}</h2>
+                <h2 className="lg:text-xl text-base lg:font-semibold font-medium lg:tracking-wider tracking-wide">{product.title}</h2>
                 <div className="relative">
                   <span className="font-semibold" >{product.price}£</span>
                   <span className="absolute top-3.5 line-through text-sm ">{product.price.toFixed(2) + 50}£ </span>
                 </div>
-                 <button className='bg-red-500 text-white font-bold px-2 py-1 text_button tracking-wide rounded-sm lg:text-base text-sm '>Remove</button>
+                 <button onClick={() => removeFromCart(product)} className='secondary_color_bg text-white font-bold px-2 py-1 text_button tracking-wide rounded-sm lg:text-xs text-sm '>Remove</button>
 
 
               </div>

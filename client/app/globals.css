@@ -13,6 +13,9 @@ body{
 .primary_color_bg{
     background: #1baaad;
 }
+.secondary_color_bg{
+    background-color: #c60d65;
+}
 .img_width{
   width: calc(65px + 25vw);
 }
@@ -69,7 +72,7 @@ body{
   margin: 0 auto;
   width: 100%;
   left: 0;
-  background: #cc4579;
+  background: #c60d65;
 }
 
 .LoadingSpinner_container{

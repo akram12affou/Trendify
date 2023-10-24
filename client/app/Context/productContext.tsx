@@ -28,7 +28,7 @@ const ProductsReducer = (state : any, action: { type: string; payload: any; }) =
         return {...state ,...state.shoppingCart=[...state.shoppingCart , {q:1 ,  ...action.payload }]}
       case "REMOVE_FROM_CART":
         return {...state , ...state.shoppingCart=state.shoppingCart.filter(e => {
-          e.id = action.payload.id
+         return e.id !== action.payload.id
         })}
       default:
         return state;

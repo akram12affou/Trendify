@@ -78,7 +78,7 @@ function page() {
               </button>
               {existInShoppingCart() ? (
                 <button
-                  className="bg-red-500 py-2 px-3  text-white font-semibold tracking-wider text-sm sm:text-base rounded-sm"
+                  className="secondary_color_bg py-2 px-3  text-white font-semibold tracking-wider text-sm sm:text-base rounded-sm"
                   onClick={() => removeFromCart(product)}
                 >
                   Remove from Cart

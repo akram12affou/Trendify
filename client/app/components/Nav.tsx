@@ -28,7 +28,7 @@ const Nav = () => {
           <FaHome className="mx-4  primary_color text-xl sm:text-2xl duration-200 ease-in-out hover:scale-110 cursor-pointer"  onClick={() => router.push('/')}/>
           <div className="relative">
             <FaShoppingCart className="mx-4 primary_color text-xl sm:text-2xl duration-200 ease-in-out hover:scale-110  cursor-pointer" onClick={() => router.push('/shoppingCart')}/>
-            {shoppingCart.length !== 0 &&   <span className="absolute bottom-2 left-12 bg-red-600 rounded text-white  px-1 text-sm font-semibold">{shoppingCart.length}</span>}
+            {shoppingCart.length !== 0 &&   <span className="absolute bottom-2 left-12 secondary_color_bg rounded text-white  px-1 text-sm font-semibold">{shoppingCart.length}</span>}
           </div>
           <button className="mx-4 text-white primary_color_bg px-4 py-1  rounded hover:tracking-wider duration-200 ease-in-out" onClick={() => router.push('/auth')}>
             Log in
@@ -45,7 +45,7 @@ const Nav = () => {
           <FaHome className="mx-4 primary_color text-xl sm:text-2xl cursor-pointer duration-200 ease-in-out hover:scale-110"  onClick={() => router.push('/')} />
           <div className="relative">
           <FaShoppingCart className="mx-4 primary_color text-xl sm:text-2xl cursor-pointer duration-200 ease-in-out hover:scale-110" onClick={() => router.push('/shoppingCart')} />
-          {shoppingCart.length !== 0 &&<span className="absolute bottom-2 left-11 bg-red-600 rounded text-white  px-1 text-sm font-semibold">{shoppingCart.length}</span>} 
+          {shoppingCart.length !== 0 &&<span className="absolute bottom-2 left-11 secondary_color_bg rounded text-white  px-1 text-sm font-semibold">{shoppingCart.length}</span>} 
           </div>
           <button className="mx-4 text-white primary_color_bg px-4 py-1 rounded hover:tracking-wider duration-200 ease-in-out" onClick={() => router.push('/auth')}>
             Log in
