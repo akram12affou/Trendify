@@ -1,11 +1,13 @@
 "use client";
-import React , {useEffect, useState , useRef} from "react";
+import React , {useEffect, useState , useRef , useContext} from "react";
 import { FaHome } from "react-icons/fa";
 import { useRouter } from "next/navigation";
 import { AiOutlineClose } from "react-icons/ai";
 import { FaShoppingCart } from "react-icons/fa";
 import { FaBars } from "react-icons/fa";
+import { ProductsContext } from "../Context/productContext";
 const Nav = () => {
+  const {shoppingCart} = useContext(ProductsContext)
   const router  = useRouter();
   const [open , setOpen] = useState<boolean>(false);
   const menu  = useRef();
@@ -26,7 +28,7 @@ const Nav = () => {
           <FaHome className="mx-4  primary_color text-xl sm:text-2xl duration-200 ease-in-out hover:scale-110 cursor-pointer"  onClick={() => router.push('/')}/>
           <div className="relative">
             <FaShoppingCart className="mx-4 primary_color text-xl sm:text-2xl duration-200 ease-in-out hover:scale-110  cursor-pointer" onClick={() => router.push('/shoppingCart')}/>
-            <span className="absolute bottom-2 left-12 bg-red-600 rounded text-white  px-1 text-sm">0</span>
+            {shoppingCart.length !== 0 &&   <span className="absolute bottom-2 left-12 bg-red-600 rounded text-white  px-1 text-sm font-semibold">{shoppingCart.length}</span>}
           </div>
           <button className="mx-4 text-white primary_color_bg px-4 py-1  rounded hover:tracking-wider duration-200 ease-in-out" onClick={() => router.push('/auth')}>
             Log in
@@ -43,7 +45,7 @@ const Nav = () => {
           <FaHome className="mx-4 primary_color text-xl sm:text-2xl cursor-pointer duration-200 ease-in-out hover:scale-110"  onClick={() => router.push('/')} />
           <div className="relative">
           <FaShoppingCart className="mx-4 primary_color text-xl sm:text-2xl cursor-pointer duration-200 ease-in-out hover:scale-110" onClick={() => router.push('/shoppingCart')} />
-           <span className="absolute bottom-2 left-11 bg-red-600 rounded text-white  px-1 text-sm">0</span>
+          {shoppingCart.length !== 0 &&<span className="absolute bottom-2 left-11 bg-red-600 rounded text-white  px-1 text-sm font-semibold">{shoppingCart.length}</span>} 
           </div>
           <button className="mx-4 text-white primary_color_bg px-4 py-1 rounded hover:tracking-wider duration-200 ease-in-out" onClick={() => router.push('/auth')}>
             Log in

@@ -3,7 +3,7 @@ import { useRouter } from 'next/navigation'
 function Product({ product }: prouduct_Object) {
   const router = useRouter()
 
-  const {id, title, description, price, image, rating } = product;
+  const {id, title, price, image, rating } = product;
   return (
     
       <div className="flex relative flex-col gap-3 p-4 shadow_product w-3/4 sm:w-1/4 h-96 justify-center cursor-pointer hover:-translate-y-1 duration-200 ease-in-out overflow-hidden   after_product" onClick={() => router.push(`/productdetails/${id}`)}>
