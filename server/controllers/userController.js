@@ -14,13 +14,13 @@ export const register = asyncHandler(async (req,res) => {
          const hashedPassword = await bcrypt.hash(password, 10);
         const newUser = await userModel.create(
             {
-                username,
+                username, 
                 email,
                 password:hashedPassword
             }
         );
         newUser.save();
-        res.json('user created');
+        res.json(newUser);
     }
 })
 
