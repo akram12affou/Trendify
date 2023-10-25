@@ -1,12 +1,16 @@
 'use client'
+import { useRouter } from "next/navigation";
 import React, {useContext} from "react";
 import { ProductsContext } from "../Context/productContext";
 import {FaPlusCircle} from 'react-icons/fa'
 import {FaMinusCircle, FaCartPlus} from 'react-icons/fa'
 import { getShoppingCart } from "../hooks/getContextProducts";
+import { useCookies } from "react-cookie";
 function page() {
-  const shoppingCart = getShoppingCart()
+  const [cookie ,_] = useCookies(['accesToken'])
+  const shoppingCart = getShoppingCart();
   const { dispatch } = useContext(ProductsContext);
+  const router = useRouter()
   const removeFromCart = (product) => {
     dispatch({ type: "REMOVE_FROM_CART", payload: product });
   }
@@ -22,7 +26,7 @@ function page() {
       console.log(i)
       count = count + shoppingCart[i].q * shoppingCart[i].price
      }
-     return count
+     return count.toFixed(2)
   }
   return (
     <>
@@ -58,7 +62,7 @@ function page() {
                 </div>
                  <button onClick={() => removeFromCart(product)} className='secondary_color_bg text-white px-2 py-1 text_button tracking-wide rounded-sm  '>Remove</button>
 
-
+      
               </div>
               </div>
           )})}
@@ -88,8 +92,14 @@ function page() {
           </span>
           <br />
           <span className="text-green-500 font-semibold">you will save 10£ on this order</span>
-          <button className="primary_color_bg w-1/2 text-white font-bold px-1 py-1.5 text_button tracking-wider rounded-sm  mt-8 opacity-90 border-2 border-sky-400 lg:text-base text-sm">Place order</button>
-          <span className="text-red-500 font-semibold mt-2 ">Login to place order</span>
+          {cookie.accesToken ?
+            <button className="primary_color_bg w-1/2 text-white font-bold px-1 py-1.5 text_button tracking-wider rounded-sm  mt-8  border-2 border-sky-400 lg:text-base text-sm">Place order</button> : <button className="primary_color_bg w-1/2 text-white font-bold px-1 py-1.5 text_button tracking-wider rounded-sm  mt-8 opacity-90 border-2 border-sky-400 lg:text-base text-sm">Place order</button>
+           }
+          
+          {!cookie.accesToken && 
+           <span className="text-red-500 font-semibold mt-2 cursor-pointer" onClick={() => router.push('/auth')}>Login to place order</span>
+           }
+          
         </div>
         </>
         }

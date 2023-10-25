@@ -1,14 +1,25 @@
 "use client";
-import React , {useEffect, useState , useRef } from "react";
-import { FaHome } from "react-icons/fa";
+import React , {useEffect, useState , useRef,useContext } from "react";
+import { FaHome, FaUser } from "react-icons/fa";
 import { useRouter } from "next/navigation";
 import { AiOutlineClose } from "react-icons/ai";
 import { FaShoppingCart } from "react-icons/fa";
 import { FaBars } from "react-icons/fa";
+import { useCookies } from "react-cookie";
 import { getShoppingCart } from "../hooks/getContextProducts";
+import { AuthContext } from "../Context/authContext";
 const Nav = () => {
+   const router  = useRouter();
+  const {user,dispatch} = useContext(AuthContext)
+  const [cookie, setCookie, removeCookie] = useCookies(['accesToken']);
+  const logout = () => {
+    window.localStorage.removeItem('trendifyUser')
+    dispatch({type :'LOGOUT'})
+    removeCookie('accesToken')
+    router.push('/')
+  }
   const shoppingCart = getShoppingCart();
-  const router  = useRouter();
+ 
   const [open , setOpen] = useState<boolean>(false);
   const menu  = useRef();
   useEffect(() => {
@@ -18,21 +29,32 @@ const Nav = () => {
       menu.current.className = menu.current.className.replace('translate-0','translate-x-full');
      }
   },[open])
+  console.log(cookie.accesToken)
   return (
     <div>
       <div className="flex justify-between p-4 items-center sm:w-10/12 w-11/12 mx-auto">
         <div className="brand_selection font-semibold uppercase leading-3  text-xl sm:text-2xl cursor-pointer" onClick={() => router.push('/')}>
           Trendify
         </div>
-        <div className="hidden sm:flex items-center">
-          <FaHome className="mx-4  primary_color text-xl sm:text-2xl duration-200 ease-in-out hover:scale-110 cursor-pointer"  onClick={() => router.push('/')}/>
+        <div className="hidden sm:flex items-center gap-4">
+          <FaHome className=" primary_color text-xl sm:text-2xl duration-200 ease-in-out hover:scale-110 cursor-pointer"  onClick={() => router.push('/')}/>
           <div className="relative">
-            <FaShoppingCart className="mx-4 primary_color text-xl sm:text-2xl duration-200 ease-in-out hover:scale-110  cursor-pointer" onClick={() => router.push('/shoppingCart')}/>
-            {shoppingCart.length !== 0 &&   <span className="absolute bottom-2 left-12 secondary_color_bg rounded text-white  px-1 text-sm font-semibold">{shoppingCart.length}</span>}
+            <FaShoppingCart className="primary_color text-xl sm:text-2xl duration-200 ease-in-out hover:scale-110  cursor-pointer" onClick={() => router.push('/shoppingCart')}/>
+            {shoppingCart.length !== 0 &&  <span className="absolute secondary_color_bg bottom-3 left-6 rounded text-white  px-1 text-sm font-semibold">{shoppingCart.length}</span>}
           </div>
-          <button className="mx-4 text-white primary_color_bg px-4 py-1  rounded hover:tracking-wider duration-200 ease-in-out" onClick={() => router.push('/auth')}>
+          {cookie.accesToken ?
+           <div className="flex items-center">
+           <span className="flex gap-2 items-center font-semibold text-base primary_color border-1 border-sky-400 border-sm px-1.5 py-0.5 rounded-sm cursor-pointer"><FaUser className="  primary_color text-xl sm:text-xl  " />{user?.username}</span>
+           <button className="mx-4 text-white primary_color_bg px-4 py-1  rounded hover:tracking-wider duration-200 ease-in-out"  onClick={logout}>
+            Log out
+           </button>
+           </div> 
+           : 
+           <button className="mx-4 text-white primary_color_bg px-4 py-1  rounded hover:tracking-wider duration-200 ease-in-out" onClick={() => router.push('/auth')}>
             Log in
-          </button>
+           </button>
+          }
+          
         </div>
         <div className="sm:hidden ">
           <FaBars className="text-2xl cursor-pointer primary_color" onClick={() => setOpen(prev => !prev)}/>
@@ -47,9 +69,26 @@ const Nav = () => {
           <FaShoppingCart className="mx-4 primary_color text-xl sm:text-2xl cursor-pointer duration-200 ease-in-out hover:scale-110" onClick={() => router.push('/shoppingCart')} />
           {shoppingCart.length !== 0 &&<span className="absolute bottom-2 left-11 secondary_color_bg rounded text-white  px-1 text-sm font-semibold">{shoppingCart.length}</span>} 
           </div>
+        {
+          cookie.accesToken  
+          ? 
+          
+           <div className=" mx-4 flex flex-col gap-2">
+           <span className="flex gap-2 w-min items-center font-semibold text-base  primary_color border-1 border-sky-400 border-sm px-1.5 py-0.5 rounded-sm cursor-pointer"><FaUser className="primary_color text-xl sm:text-xl  " />{user?.username}</span>
+           <button className=" text-white primary_color_bg px-4 py-1  rounded hover:tracking-wider duration-200 ease-in-out" onClick={logout}>
+            Log out
+           </button>
+           </div> 
+          
+
+          :
+
           <button className="mx-4 text-white primary_color_bg px-4 py-1 rounded hover:tracking-wider duration-200 ease-in-out" onClick={() => router.push('/auth')}>
             Log in
           </button>
+
+        }
+          
         </div> 
       </div>
     </div>

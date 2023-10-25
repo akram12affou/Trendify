@@ -1,7 +1,7 @@
 'use client';
-import { createContext,useReducer } from "react";
+import { createContext,useEffect,useReducer } from "react";
 const initialState = {
-     user:null,
+     user:  JSON.parse(window.localStorage.getItem('trendifyUser')) || null,
      loading:false, 
      error:null
 };
@@ -28,6 +28,12 @@ const AuthReducer = (state : any, action: { type: string; payload: any; }) => {
             error : action.payload,
             user : null
         };
+      case "LOGOUT":
+        return {
+          loading : false,
+          error : null,
+          user : null
+        }
       default:
         return state;
     }
@@ -36,7 +42,9 @@ const AuthReducer = (state : any, action: { type: string; payload: any; }) => {
 export const AuthContextProvider = ({children } : any) => {
  
 const [state , dispatch] = useReducer(AuthReducer,initialState);
- 
+ useEffect(() => {
+ window.localStorage.setItem('trendifyUser' , JSON.stringify(state.user))
+ },[state.user])
     const value = {
         user : state.user,
         error :state.error,

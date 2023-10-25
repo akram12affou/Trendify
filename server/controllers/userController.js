@@ -20,7 +20,8 @@ export const register = asyncHandler(async (req,res) => {
             }
         );
         newUser.save();
-        res.json(newUser);
+        const cookie = await generateToken(res,newUser._id)
+        res.json({newUser,cookie});
     }
 })
 
@@ -31,8 +32,8 @@ export const login = asyncHandler(async (req,res) => {
     if(user){ 
         const matchedPassword = await bcrypt.compare(password,user.password);
         if (matchedPassword) {
-            generateToken(res,user._id)
-            res.json("user logged in")
+            const cookie = await generateToken(res,user._id)
+             res.json({user,cookie});
           } else {
             responce(res,'Wrong Credential',403);
           }

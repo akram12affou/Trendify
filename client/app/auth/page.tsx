@@ -1,18 +1,19 @@
 'use client'
 import React, {useState, useContext} from 'react'
 import axios from 'axios'
-import Loading from '../components/Loading'
 import { AuthContext } from '../Context/authContext'
-// import {useCookie} from 'cookie-parser'
+import {useCookies} from 'react-cookie'
+import {useRouter} from 'next/navigation'
 function page() {
+   const router = useRouter()
    const { dispatch ,loading, error} = useContext(AuthContext)
-    // const [cookie , _ ] = useCookie(['h'])
-    const [register , setRegister] = useState(false);
+   const [cookies, setCookie, removeCookie] = useCookies(['accesToken']);
+   const [register , setRegister] = useState(false);
     const [password , setPassword] = useState('')
     const [username , setUsernameName] = useState('')
     const [email , setEmail] = useState('')
     const auth = () => {
-      
+       
       if(register){
         dispatch({type:"LOGIN_START"})
         axios.post('http://localhost:8585/user/register' , 
@@ -22,7 +23,9 @@ function page() {
             password
           }
         ).then(res => {
-          dispatch({type:"LOGIN_SUCCESS" , payload : res.data})
+          dispatch({type:"LOGIN_SUCCESS" , payload : res.data.newUser})
+          setCookie("accesToken" ,res.data.cookie)
+          router.push('/');
         }).catch(err=> {
           console.log(err);
           dispatch({type:"LOGIN_FAILED" , payload : err.response.data.message})
@@ -35,7 +38,9 @@ function page() {
           password
         }
       ).then(res => {
-        dispatch({type:"LOGIN_SUCCESS" , payload : res.data})
+        dispatch({type:"LOGIN_SUCCESS" , payload : res.data.user})
+        setCookie("accesToken" ,res.data.cookie)
+        router.push('/');
       }).catch(err=> {
         dispatch({type:"LOGIN_FAILED" , payload : err.response.data.message})
       })
@@ -56,7 +61,7 @@ function page() {
        <label htmlFor="" className='uppercase mt-3'>password :</label>
        <input type="password"  placeholder="your password ..." className='p-2.5 outline-none border-1 border-teal-600 placeholder:font-serif' value={password}  onChange={(e) => setPassword(e.target.value)}/>
        {loading ? 
-          <button className='primary_color_bg text-white font-semibold py-1 px-2 mt-3 rounded-sm tracking-wider text-lg w-3/4 mx-auto opacity-75'>
+          <button className='primary_color_bg text-white font-semibold py-1 px-2 mt-3 rounded-sm tracking-wider text-lg w-3/4 mx-auto opacity-75 cursor-progress'>
             loading...
           </button>
        :
@@ -66,7 +71,7 @@ function page() {
        }
       
     
-       <span className='secondary font-bold tracking-wider mx-auto mt-2'>
+       <span className='secondary scale-y-95  tracking-wide mx-auto mt-2'>
         {error}
         </span>
        <p className='mt-3 mx-auto'>

@@ -35,7 +35,6 @@ function page() {
   };
   const removeFromCart = () => {
     dispatch({ type: "REMOVE_FROM_CART", payload: product });
-
   }
   const priceD = product.price?.toFixed(2)
   return (
