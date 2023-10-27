@@ -10,7 +10,7 @@ import { getShoppingCart } from "../hooks/getContextProducts";
 import { AuthContext } from "../Context/authContext";
 const Nav = () => {
    const router  = useRouter();
-  const {user,dispatch} = useContext(AuthContext)
+  const {user,dispatch} = useContext<any>(AuthContext)
   const [cookie, setCookie, removeCookie] = useCookies(['accesToken']);
   const logout = () => {
     window.localStorage.removeItem('trendifyUser')
@@ -21,7 +21,7 @@ const Nav = () => {
   const shoppingCart = getShoppingCart();
  
   const [open , setOpen] = useState<boolean>(false);
-  const menu  = useRef();
+  const menu : React.MutableRefObject<any> = useRef();
   useEffect(() => {
      if(open){
       menu.current.className = menu.current.className.replace('translate-x-full','translate-0');
@@ -29,7 +29,6 @@ const Nav = () => {
       menu.current.className = menu.current.className.replace('translate-0','translate-x-full');
      }
   },[open])
-  console.log(cookie.accesToken)
   return (
     <div>
       <div className="flex justify-between p-4 items-center sm:w-10/12 w-11/12 mx-auto">

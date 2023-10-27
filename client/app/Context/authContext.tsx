@@ -1,11 +1,17 @@
-'use client';
+'use client'
 import { createContext,useEffect,useReducer } from "react";
-const initialState = {
-     user:  JSON.parse(window.localStorage.getItem('trendifyUser')) || null,
-     loading:false, 
-     error:null
-};
+let userlocal : any;
 
+const initialState :  {
+  user: any;
+  loading: boolean;
+  error: null;
+} = {
+     user:  (userlocal ? JSON?.parse(userlocal) : null ) ,
+     loading:false, 
+     error:null 
+};
+  
 export const AuthContext = createContext(initialState);
 
 const AuthReducer = (state : any, action: { type: string; payload: any; }) => {
@@ -40,12 +46,18 @@ const AuthReducer = (state : any, action: { type: string; payload: any; }) => {
   };
 
 export const AuthContextProvider = ({children } : any) => {
- 
-const [state , dispatch] = useReducer(AuthReducer,initialState);
+
+ const [state , dispatch] = useReducer(AuthReducer,initialState);
+ useEffect(() => {
+  userlocal  = window.localStorage.getItem('trendifyUser')
+},[])
  useEffect(() => {
  window.localStorage.setItem('trendifyUser' , JSON.stringify(state.user))
  },[state.user])
-    const value = {
+    const value :{ user: any; loading: boolean; error: null; dispatch :React.Dispatch<{
+      type: string;
+      payload: any;
+  }>}= {
         user : state.user,
         error :state.error,
         loading : state.loading,

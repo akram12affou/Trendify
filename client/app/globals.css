@@ -42,6 +42,13 @@ body{
   height: 7px;
 }
 
+.remove_button{
+  font-size: calc(.9rem + .3vw);
+  font-weight: 600;
+}
+.title_s{
+  font-size: calc(.9rem + .3vw);
+}
 .text_button{
   font-size: calc(.9rem + .5vw);
   font-weight: 600;

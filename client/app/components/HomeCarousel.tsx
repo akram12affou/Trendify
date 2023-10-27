@@ -7,9 +7,8 @@ import { getProducts } from "../hooks/getContextProducts";
 
 function HomeCarousel() {
   
-   const products = getProducts()
+   const products : prouduct_Object[] = getProducts()
    const router = useRouter();
- 
   return (  
     <>
       {" "}

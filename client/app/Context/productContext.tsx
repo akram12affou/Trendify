@@ -1,11 +1,26 @@
 'use client';
+import React from "react";
 import { createContext,useReducer } from "react";
+
+// type intialStateType = {
+//   products: prouduct_Object[],
+//   shoppingCart : shoppinCartItem[]
+// }
+
 const initialState = {
      products:[],
      shoppingCart : []
 };
 
-export const ProductsContext = createContext(initialState);
+export const ProductsContext = createContext<{
+  products: prouduct_Object[];
+  shoppingCart: shoppinCartItem[];
+  dispatch: React.Dispatch<any>;
+}>({
+  products:[],
+  shoppingCart : [],
+  dispatch: () => null
+});
 
 const ProductsReducer = (state : any, action: { type: string; payload: any; }) => {
     switch (action.type) {
@@ -36,19 +51,29 @@ const ProductsReducer = (state : any, action: { type: string; payload: any; }) =
       case "ADD_TO_CART":
         return {...state ,...state.shoppingCart=[...state.shoppingCart , {q:1 ,  ...action.payload }]}
       case "REMOVE_FROM_CART":
-        return {...state , ...state.shoppingCart=state.shoppingCart.filter(e => {
+        return {...state , ...state.shoppingCart=state.shoppingCart.filter((e: { id: number; }) => {
          return e.id !== action.payload.id
         })}
+      case "DELETE_ALL":
+        return {...state ,...state.shoppingCart=[] };
       default:
         return state;
     }
   };
 
-export const ProductsContextProvider = ({children } : any) => {
+export const ProductsContextProvider  = ({children } : any) => {
  
 const [state , dispatch] = useReducer(ProductsReducer,initialState);
  
-    const value = {
+    const value: {
+      products: prouduct_Object[];
+      shoppingCart: shoppinCartItem[];
+      dispatch: React.Dispatch<{
+          type: string;
+          payload: any;
+      }>;
+  }
+   = {
       products : state.products,
       shoppingCart : state.shoppingCart,
       dispatch 

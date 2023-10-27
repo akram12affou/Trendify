@@ -6,9 +6,9 @@ import Stack from '@mui/material/Stack';
 import { getProducts } from "../hooks/getContextProducts";
 function AllProducts() {
 
-  const products = getProducts()
-  const [pagination , setPagination] = useState(1)
-  const handleChange = (event,value) => {
+  const products : prouduct_Object[] = getProducts()
+  const [pagination , setPagination] = useState<number>(1)
+  const handleChange = (_event: any,value: React.SetStateAction<number>) => {
        setPagination(value)
        document
       .querySelector(".all_product")
