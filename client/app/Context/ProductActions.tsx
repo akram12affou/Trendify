@@ -10,14 +10,14 @@ export const fetchProducts = async  (dispatch:React.Dispatch<{
 export const addToCart = async (dispatch:React.Dispatch<{
     type: string;
     payload: any;
-}>,data : prouduct_Object[]) => {
+}>,data : prouduct_Object) => {
     dispatch({type:"ADD_TO_CART" , payload :data})
 }
 
 export const removeFromCart = async (dispatch:React.Dispatch<{
     type: string;
     payload: any;
-}>,data : prouduct_Object[]) => {
+}>,data : shoppinCartItem) => {
     dispatch({type:"REMOVE_FROM_CART" , payload :data})
 }
 
@@ -31,6 +31,6 @@ export const minusQuantity = async (dispatch:React.Dispatch<{
 export const addQuantity = async (dispatch:React.Dispatch<{
     type: string;
     payload: any;
-}>,data : prouduct_Object[]) => {
+}>,data : shoppinCartItem) => {
     dispatch({type:"ADD_QUANTITY" , payload :data})
 }

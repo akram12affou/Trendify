@@ -11,8 +11,8 @@ function page() {
   const shoppingCart = getShoppingCart();
   const { dispatch } = useContext(ProductsContext);
   const router = useRouter()
-  const TotalAmount = () => {
-     let count = 0;
+  const TotalAmount: () => string = () => {
+     let count : number = 0;
      for(let i=0;shoppingCart.length > i;i++){
       count = count + shoppingCart[i].q * shoppingCart[i].price
      }
@@ -77,7 +77,7 @@ function page() {
         <div className="primary_color_bg h-1 rounded-lg w-1/4 lg:w-1/2 my-4 mx-auto  "/>
         <div className="  flex flex-col ">
           <span>Total amount
-          &nbsp;&nbsp; <span className="font-semibold">{TotalAmount() - 10} £</span>
+          &nbsp;&nbsp; <span className="font-semibold">{+TotalAmount() - 10} £</span>
           </span>
           <br />
           <span className="text-green-500 font-semibold">you will save 10£ on this order</span>
