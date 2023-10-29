@@ -7,6 +7,8 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 import {ProductsContextProvider} from '@/app/Context/productContext'
 import { AuthContextProvider } from './Context/authContext'
 
+
+
 const poppins = Poppins({
   weight:['500','700'],
   subsets:['latin']
@@ -25,12 +27,14 @@ const  RootLayout = ({
   return (
     <html lang="en">
       <body className={poppins.className}>
+      
       <AuthContextProvider>
       <ProductsContextProvider>
          <Nav/>
         {children}
       </ProductsContextProvider>
       </AuthContextProvider>
+    
       </body>
     </html>
   )

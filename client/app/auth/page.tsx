@@ -76,6 +76,8 @@ function page() {
         {register ?<>Login</> :<>Sign up</>}
        </button>
        }
+       {!register && <button className="secondary_color_bg text-white font-semibold py-1 px-2 mt-3 rounded-sm tracking-wider text-lg w-3/4 mx-auto">Login as a guest</button> }
+
        <span className='secondary scale-y-95  tracking-wide mx-auto mt-2'>
         {error}
         </span>
@@ -85,6 +87,7 @@ function page() {
         {register ? <>Click here to Sign Up </>: <> Click here to Login</>}   
         </span>    
        </p>
+      
     </div>
   )
 }

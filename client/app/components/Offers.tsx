@@ -2,13 +2,11 @@ import ProductCart2 from "./ProductCart2";
 import { getProducts } from "../hooks/getContextProducts";
 
 function Offers() {
- 
   const products : (prouduct_Object | any )[] = getProducts()
-  console.log(products.slice(6,8))
   return (
     <div className='p-3 sm:w-10/12 w-11/12 mx-auto'>
       <h2 className='font-semibold  mb-8 sm:text-2xl text-xl uppercase secondary_color racking-wide brand_selection after_underline'>
-        exclusive offer :
+        exclusive offer :-
      </h2>
     <div className='flex flex-wrap gap-3 justify-center h-90'>
       {products.slice(6,8).map(product => {
@@ -18,7 +16,6 @@ function Offers() {
       })}
     </div>
  </div>
-    
   );
 }
 
