@@ -6,6 +6,7 @@ import './globals.css'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import {ProductsContextProvider} from '@/app/Context/productContext'
 import { AuthContextProvider } from './Context/authContext'
+import { CommentContextProvider } from './Context/commentContext'
 
 
 
@@ -27,14 +28,14 @@ const  RootLayout = ({
   return (
     <html lang="en">
       <body className={poppins.className}>
-      
+      <CommentContextProvider>
       <AuthContextProvider>
       <ProductsContextProvider>
          <Nav/>
         {children}
       </ProductsContextProvider>
       </AuthContextProvider>
-    
+    </CommentContextProvider>
       </body>
     </html>
   )

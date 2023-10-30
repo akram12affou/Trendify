@@ -6,12 +6,12 @@ const commentSchema = Schema({
       required:true
      },
      productId:{ 
-      type:Schema.Types.ObjectId,
-      // required:true
+      type:Number,
+      required:true
      },
-     userOwner:{
-      type:Schema.Types.ObjectId,
-      // required:true
+     username:{
+      type:String,
+      required:true
      }, 
      date: {
       type: Date,
