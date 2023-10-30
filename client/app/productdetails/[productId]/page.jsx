@@ -3,17 +3,20 @@ import React, { useEffect, useState, useContext } from "react";
 import { addToCart } from '../../Context/ProductActions'
 import { useParams } from "next/navigation";
 import {MdDelete} from 'react-icons/md'
-import Input from '@mui/material/Input';
 import { removeFromCart } from "../../Context/ProductActions";
 import axios from "axios";
+import TextField from '@mui/material/TextField';
+
 import Modal from 'react-bootstrap/Modal';
 import { ProductsContext } from "@/app/Context/productContext";
 import Loading from "@/app/components/Loading";
 import { useRouter } from "next/navigation";
 import { FaStar } from "react-icons/fa";
+import {useCookies} from 'react-cookie'
 
 function page() {
-    
+  const [cookie, setCookie,removeCookie] = useCookies(['accesToken']);
+
   const comments = [
     {
       commentId:1,
@@ -128,16 +131,22 @@ function page() {
       <div className=" p-3 sm:w-10/12 w-11/12 mx-auto ">
         <h2 className="p-3 font-semibold  mb-8 sm:text-2xl text-xl uppercase secondary_color racking-wide brand_selection after_underline">COMMENTS :-</h2>
         <div className=" flex flex-col gap-3">
-          <div className="flex items-center justify-center gap-3 w-full">
+            {
+       cookie.accesToken ?
+            <div className="flex items-center justify-center gap-3 w-full">
                <div className="flex items-center gap-2">
                      <div className="bg-gray-500 rounded-full px-3 py-2.5  border border-gray-700">
                    <span className=" font-semibold text-white">A</span>
                    </div>
                     
                     </div>
-          <Input className="w-10/12 "   placeholder="Add a comment ..." />
+          <TextField className="w-10/12 "   placeholder="Add a comment ..." variant="standard"/>
           <button className="primary_color_bg py-2 px-3  text-white font-semibold tracking-wider text-sm sm:text-base rounded-sm duration-300 ease-in-out">Submit</button>
           </div>
+        :
+          <span className="mx-auto mb-2 text-red-600 tracking-wider font-semibold cursor-pointer" onClick={() => router.push('/auth')}>Please login to comment</span>
+          }
+         
           {comments.map((e) => {
             return(
               <div className="shadow_product p-3.5 flex flex-col gap-3 border-1 border-sky-200 bg-slate-100 py-4">

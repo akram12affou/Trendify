@@ -4,6 +4,7 @@ import axios from 'axios'
 import { AuthContext } from '../Context/authContext'
 import {useCookies} from 'react-cookie'
 import {useRouter} from 'next/navigation'
+
 function page() {
   const regex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/
    const router = useRouter()
@@ -50,6 +51,7 @@ function page() {
         setCookie("accesToken" ,res.data.cookie)
         router.push('/');
       }).catch(err=> {
+      
         dispatch({type:"LOGIN_FAILED" , payload : err.response.data.message})
       })
       }

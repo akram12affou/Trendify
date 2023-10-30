@@ -1,8 +1,7 @@
-// import express from 'express';
-// import { register,login } from '../controllers/userController.js';
-// const router = express.Router();
+import express from 'express';
+import {addComment} from '../controllers/CommentController.js';
+const router = express.Router();
 
-// router.post('/register',register);
-// router.post('/login',login);
+router.post('/addComment',addComment);
 
-// export { router as userRouter };
+export { router as commentRouter};
