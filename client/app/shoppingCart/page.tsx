@@ -1,15 +1,12 @@
 'use client'
 import { useRouter } from "next/navigation";
 import { removeFromCart , minusQuantity,addQuantity } from "../Context/ProductActions";
-import React, {useContext} from "react";
-import { ProductsContext } from "../Context/productContext";
 import {FaPlusCircle,FaMinusCircle, FaCartPlus} from 'react-icons/fa'
-import { getShoppingCart } from "../hooks/getContextProducts";
 import { useCookies } from "react-cookie";
+import {useProducts} from '../hooks/getProductContext'
 function page() {
   const [cookie ,_] = useCookies(['accesToken'])
-  const shoppingCart = getShoppingCart();
-  const { dispatch } = useContext(ProductsContext);
+  const { dispatch,shoppingCart } = useProducts();
   const router = useRouter()
   const TotalAmount: () => string = () => {
      let count : number = 0;
@@ -73,7 +70,6 @@ function page() {
           <span className="font-semibold text-green-600">Free</span>
         </div>
         </div>
-        
         <div className="primary_color_bg h-1 rounded-lg w-1/4 lg:w-1/2 my-4 mx-auto  "/>
         <div className="  flex flex-col ">
           <span>Total amount

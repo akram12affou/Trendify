@@ -3,10 +3,10 @@ import React  , {useState} from 'react'
 import ProductCart from './ProductCart'
 import Pagination from '@mui/material/Pagination';
 import Stack from '@mui/material/Stack';
-import { getProducts } from "../hooks/getContextProducts";
+import { useProducts } from '../hooks/getProductContext';
 function AllProducts() {
-
-  const products : prouduct_Object[] = getProducts()
+  
+  const {products} = useProducts()
   const [pagination , setPagination] = useState<number>(1)
   const handleChange = (_event: any,value: React.SetStateAction<number>) => {
        setPagination(value)

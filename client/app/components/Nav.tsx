@@ -1,16 +1,17 @@
 "use client";
-import React , {useEffect, useState , useRef,useContext } from "react";
+import React , {useEffect, useState , useRef } from "react";
 import { FaHome, FaUser } from "react-icons/fa";
 import { useRouter } from "next/navigation";
 import { AiOutlineClose } from "react-icons/ai";
 import { FaShoppingCart } from "react-icons/fa";
 import { FaBars } from "react-icons/fa";
 import { useCookies } from "react-cookie";
-import { getShoppingCart } from "../hooks/getContextProducts";
-import { AuthContext } from "../Context/authContext";
+import { useAuth } from "../hooks/getAuthContext";
+import { useProducts } from "../hooks/getProductContext";
+
 const Nav = () => {
    const router  = useRouter();
-  const {user,dispatch} = useContext<any>(AuthContext)
+  const {user,dispatch} = useAuth();
   const [cookie, setCookie, removeCookie] = useCookies(['accesToken']);
   const logout = () => {
     window.localStorage.removeItem('trendifyUser')
@@ -18,7 +19,7 @@ const Nav = () => {
     removeCookie('accesToken')
     router.push('/')
   }
-  const shoppingCart = getShoppingCart();
+  const shoppingCart = useProducts()
  
   const [open , setOpen] = useState<boolean>(false);
   const menu : React.MutableRefObject<any> = useRef();

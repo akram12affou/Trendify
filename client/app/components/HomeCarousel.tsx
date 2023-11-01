@@ -3,12 +3,12 @@ import { useRouter } from 'next/navigation'
 import Carousel from "react-bootstrap/Carousel";
 import Loading from "./Loading";
 
-import { getProducts } from "../hooks/getContextProducts";
+import { useProducts } from '../hooks/getProductContext';
 
 function HomeCarousel() {
   
-   const products : prouduct_Object[] = getProducts()
-   const router = useRouter();
+  const {products} = useProducts()
+     const router = useRouter();
   return (  
     <>
       {" "}

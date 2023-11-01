@@ -5,12 +5,13 @@ export const addComment = async (req,res) => {
     const newComment = await  commentModel.create({
         text,
         username,
-        productId
+        productId,
+        userOwner:req.user
     }) 
     newComment.save();
     res.json(newComment);
 }
-
+  
 export const getComments = async (req,res) => {
     const productId = req.params.productId;
     const comments = await commentModel.find({productId});
@@ -18,7 +19,6 @@ export const getComments = async (req,res) => {
 }
  
 export const deleteComment  = async (req , res) => {
-    const {id} = req.params.id
-    // await postModal.findOneAndDelete({_id :id , userOwner : req.user._id})
-    await commentModel.findOneAndDelete(id)
+    const {id} = req.params.id 
+    await commentModel.findOneAndDelete({id , userOwner : req.user._id})
 }

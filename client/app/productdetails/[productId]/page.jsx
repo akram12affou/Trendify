@@ -1,24 +1,24 @@
 "use client";
-import React, { useEffect, useState, useContext } from "react";
+import React, { useEffect, useState } from "react";
 import { addToCart } from '../../Context/ProductActions'
-import { useParams } from "next/navigation";
+import { useParams, useRouter } from "next/navigation";
 import Comments from '../../components/Comments'
 import { removeFromCart } from "../../Context/ProductActions";
 import axios from "axios";
 import Modal from 'react-bootstrap/Modal';
-import { ProductsContext } from "@/app/Context/productContext";
 import Loading from "@/app/components/Loading";
-import { useRouter } from "next/navigation";
 import { FaStar } from "react-icons/fa";
+import {useProducts} from '../../hooks/getProductContext'
 function page() {
+  const router = useRouter()
   const [product, setProduct] = useState([]);
   const [loading, setLoading] = useState(false);
   const [show, setShow] = useState(false);
-  const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
+   const priceD = product.price?.toFixed(2)
   const productId = useParams().productId;
-  const router = useRouter();
-  const { dispatch, shoppingCart } = useContext(ProductsContext);
+  const { title, description, price, image, rating } = product;
+  const { dispatch, shoppingCart } = useProducts();
+
   useEffect(() => {
     setLoading(true);
     axios.get(`https://fakestoreapi.com/products/${productId}`).then((res) => {
@@ -26,7 +26,9 @@ function page() {
       setLoading(false);
     });
   }, []);
-  const { title, description, price, image, rating } = product;
+
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
   const existInShoppingCart = () => {
     let exist = false;
     shoppingCart.map((e) => {
@@ -36,7 +38,7 @@ function page() {
     });
     return exist;
   };
-  const priceD = product.price?.toFixed(2)
+ 
   return (
     <>
       {loading ? (

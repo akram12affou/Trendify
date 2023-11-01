@@ -1,19 +1,21 @@
 'use client'
-import React, { useEffect , useContext, useState } from 'react'
+import React, { useEffect , useState } from 'react'
 import axios from 'axios'
 import TextField from '@mui/material/TextField';
 import {MdDelete} from 'react-icons/md'
-import { CommentContext } from "@/app/Context/commentContext";
 import {useCookies} from 'react-cookie'
-import { AuthContext } from "@/app/Context/authContext";
 import Loading from './Loading';
-import router from 'next/router';
+import { useGetToken } from "../hooks/useGetToken";
+import {useComments} from '../hooks/getCommentsContext'
+import { useAuth } from '../hooks/getAuthContext';
+import { useRouter } from "next/navigation";
 function Comments({productId}) {
-    const [cookie, _] = useCookies(['accesToken']);
- 
-   const {user} = useContext(AuthContext)
+   const {headers} = useGetToken()
+    const router = useRouter()
+   const {user} = useAuth()
+   const [cookie , _] = useCookies(['accesToken'])
   const [text , setText] = useState('')
-    const {comments ,dispatchc, loadingC} = useContext(CommentContext)
+    const {comments ,dispatchc, loadingC} = useComments();
     useEffect(() => {
         dispatchc({type :'FETCH_START'})
         axios.get(`http://localhost:8585/comment/${productId}`).then(res => {
@@ -28,18 +30,15 @@ function Comments({productId}) {
     axios.post(`http://localhost:8585/comment/addComment` , {
       text ,
       username:user.username,
-      productId
-    },{
-            headers: {
-              token: cookie.accesToken,
-          }}
+      productId,
+    },{headers}
     ).then(res => {
       dispatchc({type:'ADD_COMMENT' , payload:res.data})
      })
      setText('')
   }
   const deleteComment = (id) => {
-    axios.delete(`http://localhost:8585/comment/delete/${id}`)
+    axios.delete(`http://localhost:8585/comment/delete/${id}`,{headers})
      dispatchc({type:'DELETE_COMMENT',payload:id})
   }
   return (
@@ -57,7 +56,7 @@ function Comments({productId}) {
             <div className="flex items-center justify-center gap-3 w-full">
                <div className="flex items-center gap-2">
                      <div className="bg-gray-500 rounded-full px-3 py-2.5  border border-gray-700">
-                   <span className=" font-semibold text-white">{user.username[0].toUpperCase()}</span>
+                   <span className=" font-semibold text-white">{user?.username[0].toUpperCase()}</span>
                    </div>
                     
                     </div>
@@ -75,12 +74,12 @@ function Comments({productId}) {
                  <div className="flex    w-11/12 items-center justify-between mx-auto">
                   <div className="flex items-center gap-2">
                      <div className="bg-gray-500 rounded-full px-3 py-2.5  border border-gray-700">
-                   <span className=" font-semibold text-white">{e.username[0].toUpperCase()}</span>
+                   <span className=" font-semibold text-white">{e?.username[0].toUpperCase()}</span>
                     </div>
-                  <div className="font-serif font-semibold">{e.username}</div>
+                  <div className="font-serif font-semibold">{e?.username}</div>
                   </div>
                   <div>
-                    {e.username===user.username && 
+                    {e?.username===user?.username && 
                          <MdDelete className=" text-xl sm:text-2xl duration-200 ease-in-out hover:scale-110 cursor-pointer" onClick={() => deleteComment(e._id)}/>
                     }
                   </div>

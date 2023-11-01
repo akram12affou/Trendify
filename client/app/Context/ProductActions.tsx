@@ -1,5 +1,3 @@
-
-
 export const fetchProducts = async  (dispatch:React.Dispatch<{
     type: string;
     payload: any;

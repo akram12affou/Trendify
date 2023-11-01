@@ -1,5 +1,4 @@
-import { Schema , model } from "mongoose";
-
+import { Schema , model,Types } from "mongoose";
 const commentSchema = Schema({
      text:{
       type:String,
@@ -13,6 +12,10 @@ const commentSchema = Schema({
       type:String,
       required:true
      }, 
+     userOwner :{
+      type: Types.ObjectId,
+      required : true, 
+    },
      date: {
       type: Date,
       default: Date.now, 

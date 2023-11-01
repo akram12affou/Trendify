@@ -4,6 +4,6 @@ import {addComment,getComments,deleteComment} from '../controllers/CommentContro
 const router = express.Router();
 router.get('/:productId',getComments)
 router.post('/addComment',verifyUser,addComment);
-router.delete('/delete/:id' , deleteComment)
+router.delete('/delete/:id' ,verifyUser, deleteComment)
  
 export { router as commentRouter};

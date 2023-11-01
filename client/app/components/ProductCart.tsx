@@ -1,5 +1,5 @@
 import { FaStar } from "react-icons/fa";
-import { useRouter } from 'next/navigation'
+import { useRouter } from 'next/navigation';
 function Product({ product }: { product: prouduct_Object }) {
   const router = useRouter()
 
