@@ -22,7 +22,12 @@ const CommentReducer = (state : any, action: { type: string; payload: any; }) =>
             comments:action.payload,
             loadingC:false
         };
-    
+      case "ADD_COMMENT":
+       console.log(action.payload)
+        return{
+             comments:[...state.comments],
+             loadingC:false,
+        };
       default:
         return state;
     }
