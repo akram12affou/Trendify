@@ -6,7 +6,7 @@ export const addComment = async (req,res) => {
         text,
         username,
         productId
-    })
+    }) 
     newComment.save();
     res.json(newComment);
 }

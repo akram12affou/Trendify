@@ -11,21 +11,25 @@ export const CommentContext = createContext(initialState);
 const CommentReducer = (state : any, action: { type: string; payload: any; }) => {
     switch (action.type) {
       case "FETCH_START":
-      
         return {
             comments:[],
             loadingC:true
         };
       case "FETCH_SUCCESS":
-      
         return {
             comments:action.payload,
             loadingC:false
         };
       case "ADD_COMMENT":
-       console.log(action.payload)
         return{
-             comments:[...state.comments],
+             comments:[...state.comments, action.payload],
+             loadingC:false,
+        };
+      case "DELETE_COMMENT":
+        return{
+             comments:state.comments.filter((e) => {
+              return e._id !== action.payload
+             }),
              loadingC:false,
         };
       default:
