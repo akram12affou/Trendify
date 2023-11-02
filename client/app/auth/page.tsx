@@ -1,19 +1,21 @@
 'use client'
-import React, {useState, useContext} from 'react'
+import React, {useState, useContext, useEffect} from 'react'
 import axios from 'axios'
 import { AuthContext } from '../Context/authContext'
 import {useCookies} from 'react-cookie'
 import {useRouter} from 'next/navigation'
 
 function page() {
-  const regex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/
-   const router = useRouter()
+   const router = useRouter();
    const { dispatch,loading, error} = useContext<any>(AuthContext);
     const [_, setCookie] = useCookies<string>(['accesToken']);
     const [register , setRegister] = useState<boolean>(false);
     const [password , setPassword] = useState<string>('');
     const [username , setUsernameName] = useState<string>('');
     const [email , setEmail] = useState<string>('');
+    useEffect(() => {
+      dispatch({type:"LOGIN_FAILED" , payload : ''})
+    },[register])
     const auth = () => {
       if(register){
         dispatch({type:"LOGIN_START"})
@@ -61,7 +63,6 @@ function page() {
     }).catch(err=> {
       dispatch({type:"LOGIN_FAILED" , payload : err.response.data.message})
     })
-    
     }
   return (
     <div className='flex flex-col w-3/4 sm:w-1/2 max-w-xl	  justify-center mt-8 gap-1  shadow_product mx-auto p-4'>

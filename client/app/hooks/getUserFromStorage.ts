@@ -1,4 +1,9 @@
 'use client'
 export const getUserLS = () => {
-  return window.localStorage.getItem('trendifyUser');
+  if (typeof window !== "undefined") {
+    return window.localStorage.getItem('trendifyUser');
+  }
+  ;
 }
+
+

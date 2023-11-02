@@ -11,12 +11,12 @@ import { FaStar } from "react-icons/fa";
 import {useProducts} from '../../hooks/getProductContext'
 function page() {
   const router = useRouter()
-  const [product, setProduct] = useState<(productObject | undefined)>();
+  const [product, setProduct] = useState<(productObject | any)>([]);
   const [loading, setLoading] = useState(false);
   const [show, setShow] = useState(false);
    const priceD : any = product?.price?.toFixed(2)
   const productId : any  = useParams().productId;
-  const { title, description, price, image, rating } : any = product;
+  const { title, description, price, image, rating } : any  = product;
   const { dispatch, shoppingCart } = useProducts(); 
 
   useEffect(() => {

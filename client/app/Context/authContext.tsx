@@ -7,7 +7,7 @@ const initialState :  {
   loading: boolean;
   error: null;
 } = {
-     user:  JSON.parse(userLS) ,
+     user:  null ,
      loading:false, 
      error:null 
 };
@@ -49,6 +49,9 @@ export const AuthContextProvider = ({children } : any) => {
 
  const [state , dispatch] = useReducer(AuthReducer,initialState);
  useEffect(() => {
+  dispatch({type:'LOGIN_SUCCESS' , payload:JSON.parse(userLS)})
+ },[])
+ useEffect(() => {
  window.localStorage.setItem('trendifyUser' , JSON.stringify(state.user))
  },[state.user])
     const value :{ user: any; loading: boolean; error: null; dispatch :React.Dispatch<{
@@ -58,7 +61,7 @@ export const AuthContextProvider = ({children } : any) => {
         user : state.user,
         error :state.error,
         loading : state.loading,
-        dispatch  
+        dispatch
     }  
 
     return  <AuthContext.Provider value={value}>
