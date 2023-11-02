@@ -1,6 +1,7 @@
 import commentModel from "../models/CommentModel.js"
+import asyncHandler from "express-async-handler";
 
-export const addComment = async (req,res) => {
+export const addComment = asyncHandler(async (req,res) => {
     const {text , username , productId} = req.body
     const newComment = await  commentModel.create({
         text,
@@ -10,7 +11,7 @@ export const addComment = async (req,res) => {
     }) 
     newComment.save();
     res.json(newComment);
-}
+}) 
   
 export const getComments = async (req,res) => {
     const productId = req.params.productId;
