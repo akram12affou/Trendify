@@ -9,12 +9,12 @@ title: String
 }
     
 interface shoppinCartItem {
-        q:Number,
+        q:number,
         category: String,
         description: String,
         id: Number,
-        image: String,
-        price: Number,
+        image: string,
+        price: number,
         rating: {rate:Number, count: Number},
         title: String
       }

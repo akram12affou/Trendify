@@ -13,7 +13,7 @@ const initialState = {
 };
 
 export const ProductsContext = createContext<{
-  products: prouduct_Object[];
+  products: productObject[];
   shoppingCart: shoppinCartItem[];
   dispatch: React.Dispatch<any>;
 }>({
@@ -66,7 +66,7 @@ export const ProductsContextProvider  = ({children } : any) => {
 const [state , dispatch] = useReducer(ProductsReducer,initialState);
  
     const value: {
-      products: prouduct_Object[];
+      products: productObject[];
       shoppingCart: shoppinCartItem[];
       dispatch: React.Dispatch<{
           type: string;

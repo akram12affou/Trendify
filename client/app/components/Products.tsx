@@ -12,7 +12,7 @@ function Products() {
        <div className='flex flex-wrap gap-5 justify-center'>
          {products.slice(3,6).map(product => {
           return(
-            <Product key={product.id}  product={product}/>
+            <Product   product={product}/>
           )
          })}
        </div>

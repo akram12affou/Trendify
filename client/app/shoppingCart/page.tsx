@@ -9,9 +9,9 @@ function page() {
   const { dispatch,shoppingCart } = useProducts();
   const router = useRouter()
   const TotalAmount: () => string = () => {
-     let count : number = 0;
+     let count : any = 0;
      for(let i=0;shoppingCart.length > i;i++){
-      count = count + shoppingCart[i].q * shoppingCart[i].price
+      count = count +(shoppingCart[i].q  * shoppingCart[i].price) 
      }
      return count.toFixed(2)
   }

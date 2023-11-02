@@ -1,8 +1,8 @@
 import React from 'react'
 import { useRouter } from 'next/navigation'
 
-function ProductCart2({ product }: { product: prouduct_Object }) {
-  const { id ,title, description, price, image } = product ;
+function ProductCart2({ product }: { product: any }) {
+  const { id ,title, description, price, image }  = product ;
   const router = useRouter()
 
 

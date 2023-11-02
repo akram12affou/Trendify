@@ -11,7 +11,7 @@ function Offers() {
     <div className='flex flex-wrap gap-3 justify-center h-90'>
       {products.slice(6,8).map(product => {
        return( 
-          <ProductCart2 key={product.id} product={product} />
+          <ProductCart2  product={product} />
         )
       })}
     </div>

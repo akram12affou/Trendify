@@ -27,7 +27,7 @@ const CommentReducer = (state : any, action: { type: string; payload: any; }) =>
         };
       case "DELETE_COMMENT":
         return{
-             comments:state.comments.filter((e) => {
+             comments:state.comments.filter((e: { _id: any; }) => {
               return e._id !== action.payload
              }),
              loadingC:false,

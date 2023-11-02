@@ -7,8 +7,8 @@ import { useProducts } from '../hooks/getProductContext';
 function AllProducts() {
   
   const {products} = useProducts()
-  const [pagination , setPagination] = useState<number>(1)
-  const handleChange = (_event: any,value: React.SetStateAction<number>) => {
+  const [pagination , setPagination] = useState<Number>(1)
+  const handleChange = (_event: any,value: React.SetStateAction<Number>) => {
        setPagination(value)
        document
       .querySelector(".all_product")
@@ -21,7 +21,7 @@ function AllProducts() {
         {
         products.slice(pagination==1 ? 8 : 16 ,pagination==1 ? 16 : 20).map((product) => {
             return(
-                <ProductCart key={product.id} product={product}/>
+                <ProductCart product={product}/>
             )
         })
       }</div>

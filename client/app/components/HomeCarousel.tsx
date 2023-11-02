@@ -28,7 +28,7 @@ function HomeCarousel() {
                       {product.description.substring(0, 200)}{" "}
                       {product.description.length > 200 && <>...</>}{" "}
                     </p>
-                    <p className="font-semibold">{product.price} £ Only </p>
+                    <p className="font-semibold">{product.price.toString()} £ Only </p>
                     <button className="primary_color_bg text-white font-bold px-3.5 py-2.5 text_button tracking-wide rounded-sm" onClick={() => router.push(`/productdetails/${product.id}`)}>
                       Buy Now
                     </button>
@@ -37,8 +37,7 @@ function HomeCarousel() {
                     onClick={() => router.push(`/productdetails/${product.id}`)}
 
                     className="w-4/6 max-w-sm object-cover img_width cursor-pointer hover:scale-[1.03] duration-200 ease-in-out"
-                    src={product.image}
-                    alt={product.title}
+                    src={product.image as any}
                   />
                 </div>
               </Carousel.Item>
