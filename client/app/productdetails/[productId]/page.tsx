@@ -11,13 +11,13 @@ import { FaStar } from "react-icons/fa";
 import {useProducts} from '../../hooks/getProductContext'
 function page() {
   const router = useRouter()
-  const [product, setProduct] = useState([]);
+  const [product, setProduct] = useState<(productObject | undefined)>();
   const [loading, setLoading] = useState(false);
   const [show, setShow] = useState(false);
-   const priceD = product.price?.toFixed(2)
-  const productId = useParams().productId;
-  const { title, description, price, image, rating } = product;
-  const { dispatch, shoppingCart } = useProducts();
+   const priceD : any = product?.price?.toFixed(2)
+  const productId : any  = useParams().productId;
+  const { title, description, price, image, rating } : any = product;
+  const { dispatch, shoppingCart } = useProducts(); 
 
   useEffect(() => {
     setLoading(true);
@@ -30,9 +30,9 @@ function page() {
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
   const existInShoppingCart = () => {
-    let exist = false;
+    let exist : Boolean = false;
     shoppingCart.map((e) => {
-      if (e.id == productId) {
+      if (e?.id == productId) {
         exist = true;
       }
     });

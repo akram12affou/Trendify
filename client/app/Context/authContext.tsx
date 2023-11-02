@@ -1,12 +1,13 @@
 'use client'
 import { createContext,useEffect,useReducer } from "react";
-
+import { getUserLS } from "../hooks/getUserFromStorage";
+const userLS : any = getUserLS();
 const initialState :  {
   user: any;
   loading: boolean;
   error: null;
 } = {
-     user:  JSON.parse(window.localStorage.getItem('trendifyUser'))  ,
+     user:  JSON.parse(userLS) ,
      loading:false, 
      error:null 
 };
@@ -57,7 +58,7 @@ export const AuthContextProvider = ({children } : any) => {
         user : state.user,
         error :state.error,
         loading : state.loading,
-        dispatch 
+        dispatch  
     }  
 
     return  <AuthContext.Provider value={value}>

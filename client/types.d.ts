@@ -1,20 +1,21 @@
-interface prouduct_Object {
-    category: string,
-    description: string,
-    id: number,
-    image: string,
-    price: number,
-    rating: {rate:number, count: number},
-    title: string
-    }
+interface  productObject  {
+  category: String,
+description: String,
+id: Number,
+image: String,
+price: Number,
+rating: {rate:Number, count: Number},
+title: String
+}
+    
 interface shoppinCartItem {
-        q:number,
-        category: string,
-        description: string,
-        id: number,
-        image: string,
-        price: number,
-        rating: {rate:number, count: number},
-        title: string
+        q:Number,
+        category: String,
+        description: String,
+        id: Number,
+        image: String,
+        price: Number,
+        rating: {rate:Number, count: Number},
+        title: String
       }
 

@@ -12,14 +12,14 @@ import { useProducts } from "../hooks/getProductContext";
 const Nav = () => {
    const router  = useRouter();
   const {user,dispatch} = useAuth();
-  const [cookie, setCookie, removeCookie] = useCookies(['accesToken']);
+  const [cookie,, removeCookie] = useCookies(['accesToken']);
   const logout = () => {
-    window.localStorage.removeItem('trendifyUser')
-    dispatch({type :'LOGOUT'})
-    removeCookie('accesToken')
-    router.push('/')
+    window.localStorage.removeItem('trendifyUser');
+    dispatch({type :'LOGOUT'});
+    removeCookie('accesToken');
+    router.push('/');
   }
-  const shoppingCart = useProducts()
+  const {shoppingCart} = useProducts()
  
   const [open , setOpen] = useState<boolean>(false);
   const menu : React.MutableRefObject<any> = useRef();
