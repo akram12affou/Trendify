@@ -55,6 +55,7 @@ const ProductsReducer = (state : any, action: { type: string; payload: any; }) =
          return e.id !== action.payload.id
         })}
       case "DELETE_ALL":
+        
         return {...state ,...state.shoppingCart=[] };
       default:
         return state;

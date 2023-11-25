@@ -4,6 +4,9 @@ import { removeFromCart , minusQuantity,addQuantity } from "../Context/ProductAc
 import {FaPlusCircle,FaMinusCircle, FaCartPlus} from 'react-icons/fa'
 import { useCookies } from "react-cookie";
 import {useProducts} from '../hooks/getProductContext'
+import Toastify from "toastify-js";
+import "toastify-js/src/toastify.css"
+
 function page() {
   const [cookie ,_] = useCookies(['accesToken'])
   const { dispatch,shoppingCart } = useProducts();
@@ -14,6 +17,22 @@ function page() {
       count = count +(shoppingCart[i].q  * shoppingCart[i].price) 
      }
      return count.toFixed(2)
+  }
+  const placeOrder = () => {
+    router.push('/')
+    dispatch({type:'DELETE_ALL'})
+    Toastify({
+      text: "your order is placed succefully",
+      className: "info",
+      style: {
+        background: "linear-gradient(to right, #1baaad, #245b5d)",
+      },
+      duration: 2000,
+      offset: {
+        x: 20,
+        y: 70,
+      },
+    }).showToast();
   }
   return (
     <>
@@ -78,7 +97,7 @@ function page() {
           <br />
           <span className="text-green-500 font-semibold">you will save 10£ on this order</span>
           {cookie.accesToken ?
-            <button className="primary_color_bg w-1/2 text-white font-bold px-1 py-1.5 tracking-wider rounded-sm  mt-8  border-2 border-sky-400 text-base" onClick={() =>dispatch({type:'DELETE_ALL'})}>Place order</button> : <button className="primary_color_bg w-1/2 text-white font-bold px-1 py-1.5  tracking-wider rounded-sm  mt-8 opacity-90 border-2 border-sky-400  text-base ">Place order</button>
+            <button className="primary_color_bg w-1/2 text-white font-bold px-1 py-1.5 tracking-wider rounded-sm  mt-8  border-2 border-sky-400 text-base" onClick={placeOrder}>Place order</button> : <button className="primary_color_bg w-1/2 text-white font-bold px-1 py-1.5  tracking-wider rounded-sm  mt-8 opacity-90 border-2 border-sky-400  text-base ">Place order</button>
            }
           {!cookie.accesToken && 
            <span className="text-red-500 font-semibold mt-2 cursor-pointer" onClick={() => router.push('/auth')}>Login to place order</span>

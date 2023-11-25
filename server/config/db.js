@@ -7,6 +7,6 @@ const connectDB =async () => {
       }
       ).then(res => {
         console.log('mongoo conected') 
-     })   
-}
-export  {connectDB}
+     })    
+}  
+export  {connectDB} 

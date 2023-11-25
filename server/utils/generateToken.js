@@ -5,6 +5,6 @@ const generateToken = async (res, id) => {
   res.cookie("accesToken", accesToken, {
     httpOnly: true,
   });
-  return accesToken;
+  return accesToken; 
 };
 export { generateToken };

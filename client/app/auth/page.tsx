@@ -4,7 +4,8 @@ import axios from 'axios'
 import { AuthContext } from '../Context/authContext'
 import {useCookies} from 'react-cookie'
 import {useRouter} from 'next/navigation'
-
+import Toastify from "toastify-js";
+import "toastify-js/src/toastify.css"
 function page() {
    const router = useRouter();
    const { dispatch,loading, error} = useContext<any>(AuthContext);
@@ -59,6 +60,18 @@ function page() {
     ).then(res => {
       dispatch({type:"LOGIN_SUCCESS" , payload : res.data.user})
       setCookie("accesToken" ,res.data.cookie)
+      Toastify({
+        text: "welcome user",
+        className: "info",
+        style: {
+          background: "linear-gradient(to right, #1baaad, #245b5d)",
+        },
+        duration: 2000,
+        offset: {
+          x: 20,
+          y: 70,
+        },
+      }).showToast();
       router.push('/');
     }).catch(err=> {
       dispatch({type:"LOGIN_FAILED" , payload : err.response.data.message})

@@ -22,12 +22,14 @@
     "react-bootstrap": "^2.9.0",
     "react-cookie": "^6.1.1",
     "react-dom": "^18",
-    "react-icons": "^4.11.0"
+    "react-icons": "^4.11.0",
+    "toastify-js": "^1.12.0"
   },
   "devDependencies": {
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
+    "@types/toastify-js": "^1.12.3",
     "autoprefixer": "^10",
     "postcss": "^8",
     "tailwindcss": "^3",

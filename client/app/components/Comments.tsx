@@ -52,6 +52,9 @@ const Comments: React.FC<any> = ({ productId }) => {
         <h2 className="p-3 font-semibold  mb-8 sm:text-2xl text-xl uppercase secondary_color racking-wide brand_selection after_underline">
           COMMENTS :-
         </h2>
+        <span className="tracking-wider font-semibold italic underline">
+              {comments.length} comment{comments.length > 1 && <>s</>}
+            </span>
       </div>
       {loadingC ? (
         <div className="flex justify-center w-full h-fit">
@@ -91,9 +94,7 @@ const Comments: React.FC<any> = ({ productId }) => {
                 Please login to comment
               </span>
             )}
-            <span className="tracking-wider font-semibold italic underline">
-              {comments.length} comment{comments.length > 1 && <>s</>}
-            </span>
+      
 
             {comments.map((e: any) => {
               return (
