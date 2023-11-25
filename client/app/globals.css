@@ -23,6 +23,7 @@ body{
   width: calc(65px + 25vw);
 }
 
+
 .brand_selection::selection {
   color: rgb(255, 255, 255);
   background: #1baaad;
@@ -177,6 +178,21 @@ body{
   }
   100% {
     transform: rotate(360deg);
+  }
+}
+
+.cart_width{
+  width:20vw;
+}
+
+@media screen and (max-width: 992px) {
+  .cart_width{
+    width:28vw;
+  }
+}
+@media screen and (max-width: 682px) {
+  .cart_width{
+    width:75vw;
   }
 }
 
