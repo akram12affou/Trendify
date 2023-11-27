@@ -18,7 +18,7 @@ const Comments: React.FC<any> = ({ productId }) => {
   const { comments, dispatchc, loadingC } = useComments();
   useEffect(() => {
     dispatchc({ type: "FETCH_START" });
-    axios.get(`http://localhost:8585/comment/${productId}`).then((res) => {
+    axios.get(`https://trendify-api.onrender.com/comment/${productId}`).then((res) => {
       dispatchc({ type: "FETCH_SUCCESS", payload: res.data });
     });
   }, []);
@@ -29,7 +29,7 @@ const Comments: React.FC<any> = ({ productId }) => {
     }
     axios
       .post(
-        `http://localhost:8585/comment/addComment`,
+        `https://trendify-api.onrender.com/comment/addComment`,
         {
           text,
           username: user.username,
@@ -43,7 +43,7 @@ const Comments: React.FC<any> = ({ productId }) => {
     setText("");
   };
   const deleteComment = (id: String) => {
-    axios.delete(`http://localhost:8585/comment/delete/${id}`, { headers });
+    axios.delete(`https://trendify-api.onrender.com/comment/delete/${id}`, { headers });
     dispatchc({ type: "DELETE_COMMENT", payload: id });
   };
   return (

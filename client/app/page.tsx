@@ -15,7 +15,7 @@ export default function Home() {
   const { dispatch } = useProducts();
 
   useEffect(() => {
-    axios.get("https://fakestoreapi.com/products").then((res) => {
+    axios.get("httpss://fakestoreapi.com/products").then((res) => {
       fetchProducts(dispatch, res.data);
     });
   }, []);

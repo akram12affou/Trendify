@@ -20,7 +20,7 @@ function page() {
     const auth = () => {
       if(register){
         dispatch({type:"LOGIN_START"})
-        axios.post('http://localhost:8585/user/register' , 
+        axios.post('https://trendify-api.onrender.com/user/register' , 
           {
             username,
             email,
@@ -36,7 +36,7 @@ function page() {
         })
       }else{
         dispatch({type:"LOGIN_START"})
-        axios.post('http://localhost:8585/user/login' , 
+        axios.post('https://trendify-api.onrender.com/user/login' , 
         {
           email,
           password
@@ -52,7 +52,7 @@ function page() {
       }
     }
     const loginAsAGuest = () => {
-      axios.post('http://localhost:8585/user/login' , 
+      axios.post('https://trendify-api.onrender.com/user/login' , 
       {
         email:"user@gmail.com",
         password:"user123"
